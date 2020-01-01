@@ -1,62 +1,60 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
-
+import java.util.Set;
 
 public class App1 {
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		
-		Scanner input = new Scanner(System.in);
-		System.out.println("Введите количество параметров:");
-		String n = input.nextLine();
-		
-	//для каждого параметра - массив; элементы массива - допустимые значения параметра; 
-		//пока массивы одномерные, чтобы настроить связи между значениями, нужно
-		//увеличивать мерность массива
-		
-	    ArrayList<String[]> allArrays = new ArrayList<String[]>(); 
-	    //массив из массивов всех параметров    
-	    //allArrays.add(names); - так добавить туда новый массив для одного параметра
-	    
-		for(int i = 0; i < Integer. parseInt(n); i++) {
-			System.out.println("Введите название " + (i+1) + " параметра:");   
-			String pname = input.nextLine(); 
-			System.out.println("Введите количество допустимых значений:");   
-			String nz = input.nextLine(); 
-			String[] zmass = new String[Integer. parseInt(nz)+1]; //массив значений
-			System.out.println("Введите через Enter возможные значения:");  
-			zmass[0]=pname; //нулевой элемент массива - название параметра
-			for(int j = 1; j <= Integer. parseInt(nz); j++)
-			{
-				zmass[j] = input.nextLine();
-			}
-			//ввели массив
-			allArrays.add(zmass);//добавили массив значений в массив параметров
-			}
+    public static void main(String[] args) {
+        // TODO Auto-generated method stub
+
+        Scanner input = new Scanner(System.in);
+        System.out.println("Р’РІРµРґРёС‚Рµ РєРѕР»РёС‡РµСЃС‚РІРѕ РїР°СЂР°РјРµС‚СЂРѕРІ:");
+        String n = input.nextLine();
+
+        //РґР»СЏ РєР°Р¶РґРѕРіРѕ РїР°СЂР°РјРµС‚СЂР° - РјР°СЃСЃРёРІ; СЌР»РµРјРµРЅС‚С‹ РјР°СЃСЃРёРІР° - РґРѕРїСѓСЃС‚РёРјС‹Рµ Р·РЅР°С‡РµРЅРёСЏ РїР°СЂР°РјРµС‚СЂР°;
+        //РїРѕРєР° РјР°СЃСЃРёРІС‹ РѕРґРЅРѕРјРµСЂРЅС‹Рµ, С‡С‚РѕР±С‹ РЅР°СЃС‚СЂРѕРёС‚СЊ СЃРІСЏР·Рё РјРµР¶РґСѓ Р·РЅР°С‡РµРЅРёСЏРјРё, РЅСѓР¶РЅРѕ
+        //СѓРІРµР»РёС‡РёРІР°С‚СЊ РјРµСЂРЅРѕСЃС‚СЊ РјР°СЃСЃРёРІР°
+
+        HashMap<String, ArrayList<String>> allArrays = new HashMap<>();
+        //СЃР»РѕРІР°СЂСЊ СЃРѕРѕС‚РІРµС‚СЃС‚РІРёР№ РїР°СЂР°РјРµС‚СЂ : РјР°СЃСЃРёРІ РІРѕР·РјРѕР¶РЅС‹С… Р·РЅР°С‡РµРЅРёР№
+        //allArrays.put(String pname, ArrayList<String> values); - С‚Р°Рє РґРѕР±Р°РІРёС‚СЊ С‚СѓРґР° РЅРѕРІС‹Р№ РїР°СЂР°РјРµС‚СЂ.
+
+        for (int i = 0; i < Integer.parseInt(n); i++) {
+            System.out.println("Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ " + (i + 1) + " РїР°СЂР°РјРµС‚СЂР°:");
+            String pname = input.nextLine();
+            ArrayList<String> value = new ArrayList<>();//РјР°СЃСЃРёРІ Р·РЅР°С‡РµРЅРёР№
+            System.out.println("Р’РІРµРґРёС‚Рµ С‡РµСЂРµР· Enter РІРѕР·РјРѕР¶РЅС‹Рµ Р·РЅР°С‡РµРЅРёСЏ:");
+            for (String j = input.nextLine(); !j.equals("") || value.size() <= 0; j = input.nextLine()) {
+                value.add(j);
+            }
+            //РІРІРµР»Рё РјР°СЃСЃРёРІ
+            allArrays.put(pname, value);//РґРѕР±Р°РІРёР»Рё РјР°СЃСЃРёРІ Р·РЅР°С‡РµРЅРёР№ РІ РјР°СЃСЃРёРІ РїР°СЂР°РјРµС‚СЂРѕРІ
+        }
 		
 	  /*  for (String a[]:allArrays){
-	    	   System.out.println("Пошел новый параметр");
+	    	   System.out.println("РџРѕС€РµР» РЅРѕРІС‹Р№ РїР°СЂР°РјРµС‚СЂ");
 	        for (String b:a){
 	            System.out.println(b);
 	        }
 	    }*/
-		System.out.println("Сколько объектов вы хотите сгенерировать?");
-		String nobjects = input.nextLine();
-		for (int t = 0; t<Integer.parseInt(nobjects); t++)
-		{
-		System.out.println("  " );
-		System.out.println("СГЕНЕРИРОВАННЫЙ ОБЪЕКТ:" );
-	    for (int i = 0; i<allArrays.size(); i++){
-	    	   String value[] = allArrays.get(i); //массив значений i параметра
-	    	   System.out.println(value[0] + ":" );
-	    	   int ng = 1; //нижняя граница генерации числа
-	    	   int vg = value.length-1; //верхняя граница
-	    	   int rand = ng + (int) ( Math.random() * vg); //случайное число - номер значения
-	    	   System.out.println(value[rand]);
-	    }
-	}
-	}
+        System.out.println("РЎРєРѕР»СЊРєРѕ РѕР±СЉРµРєС‚РѕРІ РІС‹ С…РѕС‚РёС‚Рµ СЃРіРµРЅРµСЂРёСЂРѕРІР°С‚СЊ?");
+        String nobjects = input.nextLine();
+        for (int t = 0; t < Integer.parseInt(nobjects); t++) {
+            System.out.println("  ");
+            System.out.println("РЎР“Р•РќР•Р РР РћР’РђРќРќР«Р™ РћР‘РЄР•РљРў:");
+            for (int i = 0; i < allArrays.size(); i++) {
+                Set<String> val = allArrays.keySet(); //РїРѕР»СѓС‡Р°РµРј РјРЅРѕР¶РµСЃС‚РІРѕ РЅР°Р·РІР°РЅРёР№ РїР°СЂР°РјРµС‚СЂРѕРІ
+                ArrayList<String> values = new ArrayList<>();
+                val.forEach(g -> values.add(g)); //СЃРѕС…СЂР°РЅСЏРµРј РµРіРѕ РІ РјР°СЃСЃРёРІ.
+                System.out.print(values.get(i) + ": ");//РІС‹РІРѕРґРёРј РЅР°Р·РІР°РЅРёРµ РјР°СЃСЃРёРІР°
+                int ng = 1; //РЅРёР¶РЅСЏСЏ РіСЂР°РЅРёС†Р° РіРµРЅРµСЂР°С†РёРё С‡РёСЃР»Р°
+                int vg = allArrays.get(values.get(i)).size() - 1;//РїРѕР»СѓС‡Р°РµРј РґР»РёРЅСѓ РјР°СЃСЃРёРІР° РІРѕР·РјРѕР¶РЅС‹С… Р·РЅР°С‡РµРЅРёР№ РїРѕ РєРѕРЅРєСЂРµС‚РЅРѕРјСѓ РєР»СЋС‡Сѓ
+                int rand = ng + (int) (Math.random() * vg); //РїРѕР»СѓС‡РµРЅРёРµ СЃР»СѓС‡Р°Р№РЅРѕРіРѕ Р·РЅР°С‡РµРЅРёРµ РѕС‚ 1 РґРѕ РєРѕР»РёС‡РµСЃС‚РІР° Р·РЅР°С‡РµРЅРёР№ РїРѕ РґР°РЅРЅРѕРјСѓ РїР°СЂР°РјРµС‚СЂСѓ.
+                System.out.println(allArrays.get(values.get(i)).get(rand));
+            }
+        }
+    }
 }
 
 
